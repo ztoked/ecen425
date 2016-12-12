@@ -1,0 +1,191 @@
+Benjamin Bergeson
+Zach Halvorsen
+ECEn 425
+Lab4A
+
+YKInitialize:
+void YKInitialize(void)
+{
+	Initialize general/global variables and datatypes (queues/arrays)
+	Allocate stack space
+	YKIdleTask() // Create Idle task
+}
+
+YKNewTask:
+void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority)
+{
+	Initialize general/global variables and datatypes (queues/arrays) needed for each task
+	The first parameter points the c function that corresponds to the code of the task
+	Second parameter points to the top of the stack used for the task
+	Third parameter gives priority of task. Lower the number the higher the priority priorities are unique and can be used as an identifier
+	Add new task to the data structure keeping track of the tasks and their priority
+	Calls the scheduler
+}
+
+YKRun:
+void YKRun(void)
+{
+    Set global flag to indicate kernel started
+	Check to make sure there is at least one task added
+    Call scheduler
+	Never returns
+}
+
+YKDelayTask:
+void YKDelayTask(unsigned count)
+{
+	if( count > 0 )
+	{
+		saves state of task
+		Delays the task for a defined number of clock ticks
+		calls scheduler
+	}
+}
+
+YKEnterMutex:
+void YKEnterMutex(void)
+{
+	disable interrupts
+}
+
+YKExitMutex:
+void YKExitMutex(void)
+{
+	enable interrupts
+}
+
+YKEnterISR:
+void YKEnterISR(void)
+{
+	increments global variable indicating the depth of nesting
+}
+
+YKExitISR:
+void YKExitISR(void)
+{
+	decrements global variable indicating the depth of nesting
+	if(global variable == 0)
+	{
+		call scheduler
+	}
+}
+
+
+YKScheduler:
+void YKScheduler(void)
+{
+	Loops through array of tasks until finds one that is ready
+	if(currenttask != highest priority task)
+	{
+		call the dispatcher on task
+	}
+}
+
+YKDispatcher:
+void YKDispatcher(index of array for task)
+{
+	increment YKCtxSwCount
+	reload contents of task
+	resumes/begins the function that implements the task
+}
+
+YKTickHandler:
+void YKTickHandler(void)
+{
+	increment YKTickNum
+	loops through all tasks
+	if( delay counter > 0)
+	{
+		decrements their delaycounter
+	}
+	if( delay counter == 0)
+	{
+		mark task as ready
+	}
+}
+
+YKCtxSwCount: Global variable usigned int. Keeps track of number of context switches
+YKIdleCount - Global variable unsigned int. Incremented by the idle task. Used to check how often there is not a task running
+YKTickNum - Global variable unsigned int. counts number of ticks
+
+
+SAVING CONTEXT:
+1-
+(A)
+In order to support nested interrupts as YAK requires, each ISR should save context on the stack
+
+(B)
+It is better to save the context in the TCB so that it can keep track of it while it is waiting
+
+2- Register content will just be pushed onto the stack during at the beginning of the ISR and popped right before returing from the ISR. Everything else will be put in the TCB: Stack pointer, program counter, task state.
+
+3- The functions that cause context switch will save the context of where it is
+
+4- We are going to have a global variable that keeps track of the current task. When dispatcher gets called for any task that is not the current task it will call save context for the current task. We will have a function for each task that saves the context for that task
+
+RESTORING CONTEXT(DISPATCHING):
+5- Get the SS and SP from the TCB of the task and push it on the stack
+
+6- It should be able to work automatically. When the YKExitISR gets called and there are no more tasks nested, it will call the scheduler which will then restore the context when it gets to the task that it will execute
+
+7- I will keep a TCB for each of the main YK functions so when it comes back it can figure out where it was
+
+8- The TCB address of the task. Or whatever will end up accessing it. This will have all of the information that it needs. 
+
+9- No. There are a few areas where we call the scheduler but there isn't another area we will call the dispatcher directly
+
+10- When YKNewTask gets called it will set up all of the datastructures and initialize the variables that it will need for the task. When it actually gets called for the first time, it will only need to do one thing, raise the interrupt flag, other than that everything will be set up in the YKNewTask
+
+SCHEDULING:
+11- Keep a ready flag in the TCB so that it can check to see if it should be called. 
+
+12- It will loop through the data structure that holds all of the TCBs in order of priority checking to see which one is ready to be called
+
+13- The index/pointer for the TCB of the task that is going to be dispatched. It will also update the global variable of the current task running
+
+INTERRUPTS:
+14- It will call the scheduler. Have a global variable that keeps track of it
+
+15- It will know by the depth. If the depth is not 0 then it knows it should go to the interrupt rather than the scheduler
+
+16- If the depth is greater than 0 we should save the context on the stack to keep track of it and make sure the TCB data does not get overwritten
+
+GENERAL
+17- 
+struct TCB 
+{
+	Task name or ID
+	Task priority
+	Stack pointer (top of stack) for this task
+	Program counter (address of next task instruction to run)
+	Task state (running, delayed, suspended, etc.)
+	Space to store task's context
+	Pointers to link TCBs in lists
+	Delay count 
+} tcb[];
+
+18- At first we were thinking an array but we decided a linked list might be easier. Or possibly a map based on the ID
+
+19- It will YKRun cannot run until YKNewTask has been called at least once. If run has not been called yet though we will not call the scheduler because the kernel has not been started yet
+
+20- It will set up everything need for the TCB for that task. It will get the:
+	Task name or ID
+	Task priority
+	Stack pointer (top of stack) for this task
+	Program counter (address of next task instruction to run)
+	Task state (running, delayed, suspended, etc.)
+	Space to store task's context
+	Pointers to link TCBs in lists
+	Delay count
+
+21- For initialization all of the parameters should be assigned the values passed in from the YKNewTask. I will also assign the Task state a specific value other than running, delayed, or suspended to indicate that it is the first time running the task.
+
+
+
+
+
+
+
+
+
+
