@@ -1,0 +1,14 @@
+///////////////////////////////////////////////////////////////////////////////
+// Name: ErrorHandle.c
+// Author: Wade S. Fife
+// Last modified: July 10, 2003
+// Description: Header file for ErrorHandle.c
+//
+///////////////////////////////////////////////////////////////////////////////
+
+#ifndef ERROR_HANDLE_H
+#define ERROR_HANDLE_H
+
+void SetupErrorHandlers(void);
+
+#endif	// #ifndef ERROR_HANDLE_H

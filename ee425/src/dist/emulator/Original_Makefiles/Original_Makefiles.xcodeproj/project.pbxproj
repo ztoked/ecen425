@@ -1,0 +1,138 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		3E3A17791D83568A00950406 /* makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		3E3A177A1D83568A00950406 /* makefile.linux */ = {isa = PBXFileReference; lastKnownFileType = text; path = makefile.linux; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		3E3A17731D83568A00950406 = {
+			isa = PBXGroup;
+			children = (
+				3E3A17791D83568A00950406 /* makefile */,
+				3E3A177A1D83568A00950406 /* makefile.linux */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		3E3A17781D83568A00950406 /* Original_Makefiles */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 3E3A177B1D83568A00950406 /* Build configuration list for PBXLegacyTarget "Original_Makefiles" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/zachhalvorsen/School/425/ee425/src/dist/emulator/Original_Makefiles;
+			dependencies = (
+			);
+			name = Original_Makefiles;
+			passBuildSettingsInEnvironment = 1;
+			productName = Original_Makefiles;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		3E3A17741D83568A00950406 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = 3E3A17771D83568A00950406 /* Build configuration list for PBXProject "Original_Makefiles" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3E3A17731D83568A00950406;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E3A17781D83568A00950406 /* Original_Makefiles */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		3E3A17751D83568A00950406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		3E3A17761D83568A00950406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		3E3A177C1D83568A00950406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = Original_Makefiles;
+			};
+			name = Debug;
+		};
+		3E3A177D1D83568A00950406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = Original_Makefiles;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E3A17771D83568A00950406 /* Build configuration list for PBXProject "Original_Makefiles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E3A17751D83568A00950406 /* Debug */,
+				3E3A17761D83568A00950406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E3A177B1D83568A00950406 /* Build configuration list for PBXLegacyTarget "Original_Makefiles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E3A177C1D83568A00950406 /* Debug */,
+				3E3A177D1D83568A00950406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3E3A17741D83568A00950406 /* Project object */;
+}

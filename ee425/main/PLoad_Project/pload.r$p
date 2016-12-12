@@ -1,0 +1,14 @@
+/Tde/s/v/c/k /LC:\PARADIGM\LIB;C:\TERN\186\LIB; +
+-v+ C:\PARADIGM\LIB\c0s.obj+
+-v+ ERRORH~1.OBJ+
+-v+ SERIAL~1.OBJ+
+-v+ IntLib.obj+
+-v+ LED.obj+
+-v+ PLoad.obj+
+-v+ C:\PARADIGM\LIB\pdremote.obj
+pload.rom
+pload.MAP
+-v+ C:\tern\186\lib\ae.lib+
+-v+ C:\PARADIGM\LIB\noehs.lib+
+-v+ C:\PARADIGM\LIB\cs.lib
+

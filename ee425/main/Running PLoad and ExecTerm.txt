@@ -1,0 +1,276 @@
+                        - Introduction - 
+
+PLoad and ExecTerm are two peices of software that work together to
+make Simptris possible. Together, they allow you to download and run
+simptris binaries created for the 8086 using the ECEn 425 tools to the
+AMD Am186ES microcontroller. The students' simptris binary, running on
+the microcontroller, will then play simptris agains the PC, running
+ExecTerm. ExecTerm sends the new piece, game over, etc., signals over
+the serial port to the students' code running on the
+microcontroller. The students' code, in turn sends the rotate piece,
+slide piece, etc., signals to ExecTerm. ExecTerm, also displays the
+game state in real time. All communication between the microcontroller
+and the PC is done using serial ports.
+
+PLoad is intended to run on the Tern A-Core86 microcontroller board,
+which has an AMD Am186 processor, which does differ from the 8086 in
+some ways. It is possible, though unlikely, for a student to write
+assembly code that runs on the 8086 simulator but does not run on the
+AMD Am186. In the past we have used Dr. Manwaring's ECEn 427 boards
+(the older silver ones) with the Tern boards. They have the needed
+female DB9 serial port connectors and the voltage regulator needed to
+power the board. You'll also need a 9VDC AC adapter (any polarity) to
+power these boards.
+
+IMPORTANT NOTE: On the 427 boards we've used in the past, one of the
+pins (pin 16) on the serial port driver is often bent so that it's not
+in its socket. This pin must be in its socket for our application or
+else SER1, used by PLoad for communication, won't work.
+
+
+
+                           - Pload -
+
+Purpose:
+
+PLoad was written for the AMD Am186ES microcontroller on a Tern A-
+Core86 board with 512 KB SRAM and 512KB flash. PLoad must be running
+on the microcontroller in order to download and run binaries that were
+tested to run on Emu86. PLoad includes the following:
+
+ - Code to download binaries into the controller's RAM.
+ - Code to begin execution at any location.
+ - Code to handle the same DOS like text output software
+   interrupts that Emu86 uses, using the serial port.
+ - Code to send and receive simptris commands over the
+   serial port as well as generate the appropriate 
+   interrupts, just like Emu86.
+
+Since Am186 does not support the same interrupts as the Emu86
+simulator, the Simptris interrupts are generated via software INT
+instructions by the serial port interrupt handler. This works well,
+but does not perfectly mimic the interrupt priorities used by the
+Emu86 simulator.
+
+
+Installing PLoad:
+
+This section contains step by step instructions for setting up the
+board and loading PLoad onto it. For further information on setting up
+the board and running programs, refer to the A-Core86 Technical
+Manual.  Follow the steps below to install PLoad onto the
+microcontroller.
+
+1.  Install Paradigm C++ Lite Tern Edition onto a computer with a
+    working serial port and HyperTerminal installed (or another
+    terminal program that can use the serial port). During
+    installation, setup Paradigm C++ to use an available working
+    serial port at 115,200 baud.
+
+2.  After installation, open the PLoad project file (pload.ide) by
+    selecting "Open Project..." from the "Project" menu and finding
+    the file pload.ide.
+
+3.  Connect a serial port between the PC (using the serial port you
+    chose during Paradigm C++ installation) and SER0 on the
+    microcontroller board.
+
+4.  Power up the microcontroller board.
+
+5.  Select "Run" from the "Debug" menu. This effectively loads the
+    PLoad program onto the microcontroller. The message "target
+    running" should be displayed on the status bar at the bottom of
+    the window. If an error message is given saying it could not link
+    to the board, click "Ok", and then select "Run" a second time and
+    then immediately disconnect the power to the board and reconnect
+    it (this must be done quickly before the communication attempt
+    times out). If this doesn't work then the debugger is probably not
+    loaded, not running, or corrupted. Follow the steps under the
+    section "Preparation for Debugging" then retry these steps.
+
+6.  Disconnect the power from the board and then remove the jumper
+    from the microcontroller board. The jumper is located next to the
+    heat sink and connects pins 38 and 40 on J2.
+
+7.  Select "Terminate debug session..." from the "Debug" menu in
+    Paradigm C++. An error message should appear saying that
+    communication was lost with the microcontroller, or remote
+    host. Just click "Ok".
+
+8.  Open HyperTerminal.
+
+9.  Create and start a connection using the serial port to which the
+    microcontroller is connected using 19,200 bits per second, 8 data
+    bits, no parity, 1 stop bit, and no flow control.
+
+10. Reconnect the power to the microcontroller board. The ACTF utility
+    menu should appear in the HyperTerminal window. If it does not,
+    verify that everything is properly connected (including a proper
+    supply voltage)and that the connection is active. Then type 'M'
+    (case-sensitive) and press Enter in HyperTerminal to display the
+    menu.
+
+11. Type "G18000" and press Enter (the 'G' is case sensitive). The LED
+    on the board should blink twice indicating that PLoad is
+    running. This also saves the address 1800:0000, the start address
+    of PLoad, as the start address for execution whenever the board is
+    powered up with the jumper installed on the board. If the jumper
+    is not installed, execution will begin with the ACTF utility.
+
+12. Reconnect the jumper to ensure execution always begins with PLoad.
+
+The board is now set up to run PLoad whenever the board is powered up.
+It should not need to be reprogrammed unless the battery for the SRAM
+dies, is disconnected, or if a serious software error causes the PLoad
+program to become corrupted. In any of these cases, simply follow the
+steps above to restore the program.
+
+If the board stops responding it can be restarted by cycling the power
+to the board. The LED should blink twice every time the PLoad program
+begins executing.
+
+When using PLoad with ExecTerm, be sure to connect the serial port to 
+SER1 on the board instead of SER0, which was used for programming.
+
+
+Preparation for Debugging:
+
+Any A-Core86 board that has been used before should have a debug
+utility installed on it that has a sophisticated program loader as
+well as code to allow common debugger functionality when used with
+Paradigm C++.  This software needs to be loaded and running on the
+board before Paradigm C++ can be used to load programs onto it. If
+PLoad could not be successfully installed following the steps under
+the section "Installing PLoad", follow the steps below to install the
+debugger software onto the board.
+
+1.  With the power to the board unconnected, connect the serial port 
+    between SER0 and a PC with HyperTerminal.
+
+2.  Disconnect the jumper on the board (pins 38 and 40 on J2).
+
+3.  Start HyperTerminal on the PC.
+
+4.  Create and start a connection on the serial port to which the
+    serial cable is connected using 19,200 bits per second, 8 data
+    bits, no parity, 1 stop bit, and no flow control.
+
+5.  Reconnect the power to the microcontroller board. The ACTF utility
+    menu should appear in the HyperTerminal window. If it does not,
+    verify that everything is properly connected (including a proper
+    supply voltage) and that the connection is active and then type
+    'M' (case-sensitive) and press Enter in HyperTerminal to display
+    the menu.
+
+6.  Press 'D' (case-sensitive) to instruct the utility that you wish
+    to download a file to the board. The message "Ready to receive
+    Intel Extend HEX file" should be displayed.
+
+7.  Select "Send Text File..." from the "Transfer" menu in
+    HyperTerminal. Find the file L_TDREM.HEX, which should have been
+    installed with the TERN edition of Paradigm C++ and should be
+    located in the tern\186\rom\ae86 directory. You should see the
+    character 'U' appear many times indicating that the file is
+    downloading.
+
+8.  Once the download is complete, which will take some time, the text
+    "END of File Record" should be displayed followed by the checksum
+    and "CS:IP=04000". Type "G04000" and press enter to execute the
+    code that was downloaded. Running this code erases flash memory
+    from physical address 0xFA000 to 0xFBFFF so that debugger software
+    can be installed there. Erasing first is a necessary step when
+    writing to flash memory.
+
+9.  You should see a message indicating that the board is ready to
+    receive another .HEX file. Select "Send Text File..." again from
+    the "Transfer" menu and download the file ae86_115.hex, which
+    should also be located in tern\186\rom\ae86 directory. This file
+    contains the portion of the debugger that must be resident on the
+    microcontroller.  This particular version is intended for
+    debugging at 115,200 baud.
+
+10. You should see the character 'V' appear many times indicating that
+    the software is downloading.
+
+11. When the download is complete, which will take some time, the text
+    "END of File Record" should be displayed as well as text
+    indicating that it was loaded at 0xFA00:0000. The ACTF utility
+    menu should follow.  Type "GFA000" and press Enter to execute the
+    debugger software. The LED should flash twice, indicating that the
+    debugger is running. This also saves the address FA00:0000, the
+    start address of the debugger, as the start address for execution
+    whenever the board is powered up with the jumper installed on the
+    board. If the jumper is not installed, execution will begin with
+    the ACTF utility.
+
+12. Reconnect the jumper to ensure execution always begins with the
+    debugger.
+
+The board is now ready for use with Paradigm C++ and the steps to
+install PLoad can be followed. Be sure to close HyperTerminal before
+continuing.
+
+
+
+                             - ExecTerm -
+
+Purpose:
+
+ExecTerm is intended to run on a PC with Windows. It allows you to
+load binaries from disk and transfer them to a board running
+PLoad. ExecTerm includes the following:
+
+ - Code to open binaries and transfer them over a COM port.
+   to a board running PLoad.
+ - Code to instruct PLoad to begin execution.
+ - Code to echo back text sent by the board.
+ - Code to act as a Simptris machine, sending event
+   messages over the serial port and responding to
+   Simptris commands sent by the board.
+
+
+Using ExecTerm:
+
+Start ExecTerm by typing "ExecTerm" at a command prompt in the
+directory where ExecTerm is located. COM1 is used by default but COM1,
+COM2, COM3, or COM4 can be specified by adding it to the command, as
+in "ExecTerm COM2". SER1 on ther microcontroller should be connected
+to the PC's COM port.
+
+The user interface to ExecTerm is self explanatory. When first
+started, ExecTerm will ask you for the CPU speed of the machine it is
+running on. This is needed since ExecTerm uses the CPU clock as a
+precise timer. Enter the CPU speed or enter nothing to have the
+software attempt to measure the CPU speed.
+
+Once started, ExecTerm will ask you for a file to load and execute.
+When you have chosen a program to load, it will begin uploading the
+binary to the board and will send the command to begin execution
+immediately. Once the text "Terminal started" (underlined) is
+displayed, everything that is displayed in the window from then on is
+text sent by PLoad or by the program currently running on the board.
+When execution is completed or stopped, an underline is drawn across
+the window marking the end of the terminal session with the board.
+
+Execution and uploading can be stopped by pressing the Esc key.
+However, pressing Esc while uploading will likely cause PLoad to
+freeze, as it waits endlessly for the rest of the program to be
+transferred. If this occurs, restart the microcontroller board by
+cycling the power.
+
+For best results, the process priority for ExecTerm can be increased
+from Normal to AboveNormal using the Windows Task Manager.
+
+
+
+                 - ExecTerm/PLoad Communication - 
+
+See the file "ExecTerm Communications Protocol.txt" to see an
+explanation of the commands that can be sent by ExecTerm and received
+by PLoad. The current implementation of PLoad is not very robust so if
+a communications error occurs, PLoad will most likely need to be
+restarted by cycling the power on the microcontroller board.
+
+
+___________________________________________________________________
+Last updated November 17, 2004 by WSF

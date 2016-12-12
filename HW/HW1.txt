@@ -1,0 +1,33 @@
+1. 
+
+void IsLeapYear(int year)
+{
+	if(year % 4 == 0)
+	{
+		if(year % 100 == 0)
+		{
+			if(year % 400 == 0)
+			{
+				return 1;
+			}
+			return 0;
+		}
+		return 1;
+	}
+	return 0;
+}
+
+2.	3 It seems like it should be 3.333 with really close precision but it turns out that because both x and y are integers it does integer division and the result is 3
+
+3.	t2 = t1 & 0x00FF0000 << 16 | ~t1 & 0xFF000000 >> 16 | t1 & 0x000000FF << 16 | t1 & 0x0000FF00 >> 16;
+
+4.
+A) (x + y) * z = 2
+B) (x == 0) && (y != 4) = true && true = true
+C) (y < x) < z = 0 < 2 = true
+D) y + (-z) = -1
+E) !(z||y) = !(true) = false
+F) (y)? x : z = 0
+G) (x - y) < z = -1 < 2 = true
+H) x = 0 || (z <= y) = false || false = false
+I) (z & 3) == 2 = (2) == 2 = true

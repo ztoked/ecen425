@@ -1,0 +1,43 @@
+Input file: PLOAD.ROM
+Configuration file: PLOAD.CFG
+Created by Paradigm LOCATE 6.00.116 on Wed Nov 17 17:17:30 2004
+Command line options: C:\Paradigm\bin\locate.exe -cpload.cfg -d0 -D__PDREMOTE__ pload.rom 
+
+Memory Address Map for Program PLOAD
+
+ Start     Stop      Length   Segment                Class               
+ 010000H   010649H   0064AH   _DATA                  DATA            
+ 01064AH   01064BH   00002H   _CVTSEG                DATA            
+ 01064CH   010651H   00006H   _SCNSEG                DATA            
+ 010660H   0153B7H   04D58H   _BSS                   BSS             
+ 0153C0H   0153C0H   00000H   _NVRAM                 NVRAM           
+ 0153C0H   0153CFH   00010H   _EDATA                 EDATA           
+ 0153D0H   0153D0H   00000H   _NHEAP                 STACK           
+ 0153D0H   0157CFH   00400H   _STACK                 STACK           
+ 0157D0H   0157DFH   00010H   _ESTACK                STACK           
+ 0157E0H   0157E0H   00000H   _BFD                   FAR_DATA        
+ 0157E0H   0157EFH   00010H   _EFD                   ENDFAR_DATA     
+ 0157F0H   0157F0H   00000H   _BFB                   FAR_BSS         
+ 0157F0H   0157FFH   00010H   _EFB                   ENDFAR_BSS      
+ 015800H   015800H   00000H   _BFH                   FAR_HEAP        
+ 015800H   01580FH   00010H   _EFH                   ENDFAR_HEAP     
+ 018000H   01ACB9H   02CBAH   _TEXT                  CODE            
+ 01ACC0H   01ACCBH   0000CH   _INIT_                 INITDATA        
+ 01ACCCH   01ACCCH   00000H   _INITEND_              INITDATA        
+ 01ACD0H   01ACD0H   00000H   _EXIT_                 EXITDATA        
+ 01ACD0H   01ACDFH   00010H   _EXITEND_              EXITDATA        
+ 01ACE0H   01ACE0H   00000H   _BFC                   FAR_CONST       
+ 01ACE0H   01ACEFH   00010H   _EFC                   ENDFAR_CONST    
+ 01ACF0H   01ACF0H   00000H   _RD                    ROMDATA         
+ 01ACF0H   01B339H   0064AH   _DATA                  ROMDATA         
+ 01B33AH   01B33BH   00002H   _CVTSEG                ROMDATA         
+ 01B33CH   01B341H   00006H   _SCNSEG                ROMDATA         
+ 01B350H   01B35FH   00010H   _ERD                   ENDROMDATA      
+ 01B360H   01B360H   00000H   _BRFD                  ROMFARDATA      
+ 01B360H   01B360H   00000H   _BFD                   ROMFARDATA      
+ 01B360H   01B36FH   00010H   _ERFD                  ENDROMFARDATA   
+
+Entry point:   1800:0000
+Initial stack: 1000:53D0
+
+

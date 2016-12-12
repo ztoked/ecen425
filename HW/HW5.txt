@@ -1,0 +1,28 @@
+Zach Halvorsen
+ECEN 425
+HW 5
+
+
+to be reentrant:
+
+1. Use variables in a non atomic way unless they are local to the callling task
+2. Call any other functions that are not reentrant
+3. Use the hardware in a non-atomic way
+
+1- This is not a reentrant function because it can be skipped or messed up when it is called in "parallel" so it can't be interrupted and then called again without a problem. It uses a global variable in a non-atomic way
+
+2- It is not reentrant. The value for the pointer p_sz is accessed when it is dereferenced in the while loop. If the that value was not accessed anywhere else in the program it would be reentrant. But because we do not know that it we have to assume that it is not reentrant
+
+3-
+(A) Twice. Once in the #define definition. The other is in the variable a
+(B)
+    a: The strings are represented with the hex values of the ascii characters in the string
+    b: It just has 4 pointers to the string literals
+(C) It is 4*58 so 232 bytes
+(D) 8 bytes to hold the 4 pointers
+(E) It would be faster to sort b because it would has to move a pointer instead of the entire string
+
+4-
+ (A) To declare a function but will be defined somewhere else. It will usually be defined after the code where the function is called. This is because while the compiler is checking the code it doesn't know that that function actually exists because it has not checked below. With a prototype it knows that it will be found
+ (B) It is declared in clib.h and included so it does not need a prototype. Because it is in the .h it is found above where it is called so the compiler knows that the function does exist.
+ (C) It is declared in clib.h but it will be defined in clib.c

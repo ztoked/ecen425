@@ -1,0 +1,65 @@
+#define RAM 128 // 128KB SRAM installed
+//#define RAM 512 // Assume 512KB SRAM installed
+#define ROM 512 // Assume 512KB ROM chip
+
+cputype Am186ES // AMD188/6 based controllers
+
+#if RAM == 128
+map 0x00000 to 0x0ffff as reserved // User code area (64KB)
+map 0x10000 to 0x17fff as rdwr     // System RAM data area (32KB)
+map 0x18000 to 0x1ffff as rdonly   // System RAM code area (32KB)
+map 0x20000 to 0x7ffff as reserved // Invalid memory region (384KB)
+map 0x80000 to 0xfffff as reserved // EPROM area (512KB, no access allowed)
+#define CODE_START 0x1800          // Start segment of application code
+#define DATA_START 0x1000          // Start segment of application data
+
+#elif RAM == 512
+map 0x00000 to 0x0ffff as reserved // User code area (64KB)
+map 0x10000 to 0x1ffff as rdwr     // System RAM data area (64KB)
+map 0x20000 to 0x2ffff as rdonly   // System RAM code area (64KB)
+map 0x30000 to 0x7ffff as reserved // Unused system RAM (320KB)
+map 0x80000 to 0xfffff as reserved // EPROM area (512KB, no access allowed)
+#define CODE_START 0x2000          // Start segment of application code
+#define DATA_START 0x1000          // Start segment of application data
+#endif
+
+
+//
+// Start of common configuration file settings.
+//
+
+absfile     axe86                  // Paradigm C++ debugging output
+listfile    segments               // Absolute segment map
+
+dup		DATA ROMDATA               // Make a copy of initialized data
+dup		FAR_DATA ROMFARDATA        // Make a copy of far initialized data
+
+#if defined(__COMPFARDATA__)       // Compress and display results
+compress ROMFARDATA
+display  compression
+#endif
+
+class       CODE = CODE_START      // Application code
+class       DATA = DATA_START      // Application data
+
+order       DATA \                 // DATA class organization
+			BSS \
+			NVRAM \
+			EDATA \
+			STACK \
+			FAR_DATA ENDFAR_DATA \
+			FAR_BSS ENDFAR_BSS \
+			FAR_HEAP ENDFAR_HEAP
+
+order       CODE \                 // CODE class organization
+			INITDATA EXITDATA \
+			FAR_CONST ENDFAR_CONST \
+			ROMDATA ENDROMDATA \
+			ROMFARDATA ENDROMFARDATA
+
+output      CODE \                 // Classes in the output file(s)
+			INITDATA EXITDATA \
+			FAR_CONST ENDFAR_CONST \
+			ROMDATA ENDROMDATA \
+			ROMFARDATA ENDROMFARDATA
+

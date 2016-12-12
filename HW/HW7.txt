@@ -1,0 +1,12 @@
+Zach Halvorsen
+ECEn 425
+HW 7
+
+1- The way they have it set up it is mutually exclusive and would work. The task waits until there is nothing to print so the interrupt routine will not use them at the same time. The task pends a semaphore that the gets released in the interrupt handler so that they can run one at a time
+
+2- Function queue scheduling. It is the only architecture that will allow lower priority tasks to run sometimes but not all of the time.
+
+3-
+(A) XCHG. This instruction lets you read and write to memory in one instruction. The process of aquiring a semaphore needs to be atomic, this is the best way to do so. It will read the value currently there and put it in a register then write another value. If it interrupts directly afterwards it will have already put its value in the semaphore register and it will already have its earlier value saved in a dynamic register and will be able to use it when it gets back from the interrupt
+
+(B) It uses three different values in each processor to indicate its current state. 0: not waiting for a semaphore; 1: waiting for a semaphore. 2: waiting for a semaphore and currently searching to make sure that it is the only processor about to take the semaphore or has the semaphore. At first we thought that if the interior for loop were interrupted and a previous index took the semaphore that one would also be try to take the semaphore and there would be a collision. But if it does interrupt the interrupting task will see that the interrupted task had a value of 2 and it would not try to take the semaphore.

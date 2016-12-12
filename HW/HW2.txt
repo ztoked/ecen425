@@ -1,0 +1,110 @@
+1-
+#include <stdio.h>
+
+int main()
+{
+    int a = 1;
+    int b = 0;
+    
+    if (a != b)
+        if (a < b)
+            printf("First statement");
+    else
+        printf("Second statement");
+
+    return 0;
+}
+
+The else statement is linked to the if statement: if(a < b). There is no else for the statement: if(a != b).
+
+2-
+Compiler does not give any indication and execution does not give any indication either. There is a random value that is given to the value outside of the array.
+
+#include <stdio.h>
+#define size 5
+
+int main()
+{
+    int array1[size] = {0,1,2,3,4};
+    int array2[2] = {5,6};
+    array2[3] = 4984;
+    for (int i = 0; i < size + 1; ++i)
+    {
+        printf("array1[%d] = %d, %p\n", i, array1[i], &array1[i]);
+    }
+    printf("\n\n");
+    for (int i = 0; i < 3; ++i)
+    {
+        printf("array2[%d] = %d, %p\n", i, array2[i], &array2[i]);
+    }
+    
+    return 0;
+}
+array1[0] = 0, 0x7fff5fbff750
+array1[1] = 4984, 0x7fff5fbff754
+array1[2] = 2, 0x7fff5fbff758
+array1[3] = 3, 0x7fff5fbff75c
+array1[4] = 4, 0x7fff5fbff760
+array1[5] = 32767, 0x7fff5fbff764
+
+
+array2[0] = 5, 0x7fff5fbff748
+array2[1] = 6, 0x7fff5fbff74c
+array2[2] = 0, 0x7fff5fbff750
+Program ended with exit code: 0
+
+3-
+(A) gcc, Mac
+#include <stdio.h>
+
+void notMain(char c, double s, int ints[5])
+{
+    
+}
+
+int main()
+{
+    int var = notMain(1,2,3);
+
+    return 0;
+}
+sh-4.3$ gcc -o main *.c                                                                                                                                
+main.c: In function 'main':                                                                                                                            
+main.c:10:27: warning: passing argument 3 of 'notMain' makes pointer from integer without a cast [-Wint-conversion]                                    
+     int var = notMain(1,2,3);                                                                                                                         
+                           ^                                                                                                                           
+main.c:3:6: note: expected 'int *' but argument is of type 'int'                                                                                       
+ void notMain(char c, double s, int ints[5])                                                                                                           
+      ^                                                                                                                                                
+main.c:10:15: error: void value not ignored as it ought to be                                                                                          
+     int var = notMain(1,2,3);   
+
+(B)
+#include <stdio.h>
+
+int main()
+{
+    int i = 45;
+    double d = 4.5;
+    char string[6] = "Hello";
+    
+    printf("%s, %d, %d", i, d, string);
+    
+    scanf("%d", i);  /* The '&' was "accidentally" left out before the i */
+
+    return 0;
+}
+
+There were no warnings when compiled but when executed there was a segmentation fault.
+
+sh-4.3$ gcc -o main *.c                                                                                                                                
+sh-4.3$ main                                                                                                                                           
+Segmentation fault    
+
+It does a lot of stuff behind the scenes that the compiler does not look at. If I put the same code in Xcode with compiling it does give me warnings that the arguments do not match
+
+4-
+AX = 1514
+BX = 1502
+CX = 0100
+DX = 2524

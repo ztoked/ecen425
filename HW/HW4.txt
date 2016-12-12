@@ -1,0 +1,46 @@
+Zach Halvorsen
+ECEN 425
+HW 3
+
+
+1- Round-robin because there is no spec on priorities it can just cycle through all of the sensors checking their values
+
+2- Round-robin with interrupts: the interrupts have priority but they do not have a queue. They just run the highest priority
+
+3-
+(A)
+Terinary operator that returns the greater of A or B
+
+(B)
+    *** Advantages of Macro ***
+    1- Less instructions because it doesn't have to jump or save context. Faster
+
+    *** Disadvantages ***
+    1- Takes up more space because it is a direct text replacement
+    2- Can change variables in unexpected ways (See C)
+
+(C)
+It double increments the max number. It is a text replacement so it would look like:
+    ((i++) > (j++) ? (i++) : (j++))
+
+(D)
+It would end up changing the order of operations. It would look like:
+    y + (1 * y) + 1 = y + y + 1
+
+(E)
+Just need to add parenthases around the x's
+    #define square(x)  (x) * (x)
+
+4-
+(A)
+    argWord = [bp + 4] = 0x4312
+    argByte = [bp + 6] = 0x20
+
+    localWord = [bp - 2] = 0x2103
+    localByte = [bp - 3] = 0xB9
+
+(B)
+[bp + 2] = 0xFFEE = 0x02EA
+
+(C)
+[bp] = OxFFEC = 0xFFF6

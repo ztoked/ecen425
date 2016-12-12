@@ -1,0 +1,6 @@
+To be reentrant:
+
+1. Use variables in a non atomic way unless they are local to the callling task
+2. Call any other functions that are not reentrant
+3. Use the hardware in a non-atomic way
+

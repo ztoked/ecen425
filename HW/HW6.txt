@@ -1,0 +1,21 @@
+Zach Halvorsen
+ECEn 425
+HW 6
+
+1- The program is using two different semaphores to access the same variable.
+    It should only have one. They should also be calling get and give in both functions
+
+2- I would do a get semaphore before reading its value and then give after assigning the value.
+    This would keep it consistent throughout iValue's manipulation.
+
+3-
+(A) If the value is greater than 7, our largest value, it executes the default.
+    It checks that first. If it isn't the default then it multiplies what it is switching by two because each word is two bytes.
+    It then has a list of addresses that it goes to by the number in switch.
+
+(B) It just does the same thing as an if else.
+
+(C) The random valued switch would not be able to do the same thing as the consecutive
+    because it would need to allocate tons of positions in list of addresses that would be for the default case.
+    It would not be worth it. It would take more processing for the consecutive switch to do an if else though.
+    I learned that it is best to use consecutive values for switch statements when possible.

@@ -1,0 +1,47 @@
+Zach Halvorsen
+ECEN 425
+HW 3
+
+
+1- No. The way the code is written it basically overrides the interrupt so if an hour were supposed to change during that function it would not take effect
+2- If the interrupt happened just right at the wrong time, It could get the least significant word and drop the second. This means it could be 2^16-1 = 65535. If they used 8 bit registers it would actually be the same situation the answer would be 2^16-1 = 65535.
+3- If it interrupted right between incrementing lSecondsToday and the reset if statement and the higher priority interrupt uses lSecondsToday, it could be greater than 60 * 60 * 24 it would then never reset and would constantly increment. Instead of checking after it would be better to check before you increment to assign to 0 or incremement
+4-
+(A)
+MyFunction:
+    push    bp
+    mov     bp, sp
+
+    push bx
+    mov bx, [bp+4]
+    push cx
+    mov cx, [bp+6]
+
+    sub sp 4
+
+    mov word [bp-2], 0
+    mov byte [bp-3], 0
+
+    pop bx
+    pop cx
+    pop bp
+    ret
+
+(B) To access localWord it will use word [bp-2], to access localByte it will use byte [bp-4]
+(C) It is allocated on the stack below the base pointer. The command sub sp {size} should be used to allocate memory for the local variables
+
+5-
+if(src1.o && is1OutOfDate)
+{
+    run src1.o target and recompile
+}
+
+if(src2.o && is2OutOfDate)
+{
+    run src2.o target and recompile
+}
+
+if(src3.o && is3OutOfDate)
+{
+    run src3.o target and recompile
+}

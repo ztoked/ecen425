@@ -1,0 +1,575 @@
+
+ Start  Stop   Length Name               Class
+
+ 00000H 02CB9H 02CBAH _TEXT              CODE
+ 02CC0H 02CCBH 0000CH _INIT_             INITDATA
+ 02CCCH 02CCCH 00000H _INITEND_          INITDATA
+ 02CD0H 02CD0H 00000H _EXIT_             EXITDATA
+ 02CD0H 02CDFH 00010H _EXITEND_          EXITDATA
+ 02CE0H 02CE0H 00000H _RD                ROMDATA
+ 02CE0H 02CEFH 00010H _ERD               ENDROMDATA
+ 02CF0H 02CF0H 00000H _BRFD              ROMFARDATA
+ 02CF0H 02CFFH 00010H _ERFD              ENDROMFARDATA
+ 02D00H 03349H 0064AH _DATA              DATA
+ 0334AH 0334BH 00002H _CVTSEG            DATA
+ 0334CH 03351H 00006H _SCNSEG            DATA
+ 03360H 080B7H 04D58H _BSS               BSS
+ 080C0H 080C0H 00000H _NVRAM             NVRAM
+ 080C0H 080CFH 00010H _EDATA             EDATA
+ 080D0H 080D0H 00000H _NHEAP             STACK
+ 080D0H 084CFH 00400H _STACK             STACK
+ 084D0H 084DFH 00010H _ESTACK            STACK
+ 084E0H 084E0H 00000H _BFD               FAR_DATA
+ 084E0H 084EFH 00010H _EFD               ENDFAR_DATA
+ 084F0H 084F0H 00000H _BFC               FAR_CONST
+ 084F0H 084FFH 00010H _EFC               ENDFAR_CONST
+ 08500H 08500H 00000H _BFB               FAR_BSS
+ 08500H 0850FH 00010H _EFB               ENDFAR_BSS
+ 08510H 08510H 00000H _BFH               FAR_HEAP
+ 08510H 0851FH 00010H _EFH               ENDFAR_HEAP
+
+
+Detailed map of segments
+
+ 0000:0000 00A8 C=CODE   S=_TEXT          G=(none)   M=c0         ACBP=68
+ 0000:00A8 034B C=CODE   S=_TEXT          G=(none)   M=ErrorHandle ACBP=28
+ 0000:03F3 05C5 C=CODE   S=_TEXT          G=(none)   M=SerialPort ACBP=28
+ 0000:09B8 0627 C=CODE   S=_TEXT          G=(none)   M=IntLib     ACBP=28
+ 0000:0FDF 00DE C=CODE   S=_TEXT          G=(none)   M=LED        ACBP=28
+ 0000:10BD 03D3 C=CODE   S=_TEXT          G=(none)   M=PLoad      ACBP=28
+ 0000:1490 0030 C=CODE   S=_TEXT          G=(none)   M=pdremote   ACBP=48
+ 0000:14C0 0EA1 C=CODE   S=_TEXT          G=(none)   M=AE         ACBP=28
+ 0000:2361 0018 C=CODE   S=_TEXT          G=(none)   M=noxx       ACBP=28
+ 0000:2379 0095 C=CODE   S=_TEXT          G=(none)   M=exit       ACBP=28
+ 0000:240E 0050 C=CODE   S=_TEXT          G=(none)   M=fardata    ACBP=48
+ 0000:245E 0044 C=CODE   S=_TEXT          G=(none)   M=farbss     ACBP=48
+ 0000:24A2 005F C=CODE   S=_TEXT          G=(none)   M=sprintf    ACBP=28
+ 0000:2501 0024 C=CODE   S=_TEXT          G=(none)   M=fmemcpy    ACBP=28
+ 0000:2525 0029 C=CODE   S=_TEXT          G=(none)   M=memcmp     ACBP=28
+ 0000:254E 0062 C=CODE   S=_TEXT          G=(none)   M=movmem     ACBP=28
+ 0000:25B0 0040 C=CODE   S=_TEXT          G=(none)   M=memset     ACBP=28
+ 0000:25F0 0021 C=CODE   S=_TEXT          G=(none)   M=h_llsh     ACBP=28
+ 0000:2611 0089 C=CODE   S=_TEXT          G=(none)   M=h_pada     ACBP=28
+ 0000:269A 0022 C=CODE   S=_TEXT          G=(none)   M=f_pcmp     ACBP=28
+ 0000:26BC 0024 C=CODE   S=_TEXT          G=(none)   M=atexit     ACBP=28
+ 0000:26E0 0023 C=CODE   S=_TEXT          G=(none)   M=pcpprtl    ACBP=48
+ 0000:2703 0028 C=CODE   S=_TEXT          G=(none)   M=h_psbp     ACBP=28
+ 0000:272B 001F C=CODE   S=_TEXT          G=(none)   M=memcpy     ACBP=28
+ 0000:274A 04CB C=CODE   S=_TEXT          G=(none)   M=vprinter   ACBP=28
+ 0000:2C15 009A C=CODE   S=_TEXT          G=(none)   M=longtoa    ACBP=28
+ 0000:2CAF 0004 C=CODE   S=_TEXT          G=(none)   M=realcvt    ACBP=28
+ 0000:2CB3 0007 C=CODE   S=_TEXT          G=(none)   M=cvtfak     ACBP=28
+ 02CC:0000 0000 C=INITDATA S=_INIT_         G=IGROUP   M=c0         ACBP=68
+ 02CC:0000 0006 C=INITDATA S=_INIT_         G=IGROUP   M=fardata    ACBP=48
+ 02CC:0006 0006 C=INITDATA S=_INIT_         G=IGROUP   M=farbss     ACBP=48
+ 02CC:000C 0000 C=INITDATA S=_INITEND_      G=IGROUP   M=c0         ACBP=28
+ 02CC:0010 0000 C=EXITDATA S=_EXIT_         G=IGROUP   M=c0         ACBP=68
+ 02CC:0010 0010 C=EXITDATA S=_EXITEND_      G=IGROUP   M=c0         ACBP=28
+ 02CE:0000 0000 C=ROMDATA S=_RD            G=(none)   M=c0         ACBP=68
+ 02CE:0000 0010 C=ENDROMDATA S=_ERD           G=(none)   M=c0         ACBP=68
+ 02CF:0000 0000 C=ROMFARDATA S=_BRFD          G=(none)   M=c0         ACBP=68
+ 02CF:0000 0010 C=ENDROMFARDATA S=_ERFD          G=(none)   M=c0         ACBP=68
+ 02D0:0000 0024 C=DATA   S=_DATA          G=DGROUP   M=c0         ACBP=68
+ 02D0:0024 012A C=DATA   S=_DATA          G=DGROUP   M=ErrorHandle ACBP=48
+ 02D0:014E 007D C=DATA   S=_DATA          G=DGROUP   M=SerialPort ACBP=48
+ 02D0:01CC 0082 C=DATA   S=_DATA          G=DGROUP   M=IntLib     ACBP=48
+ 02D0:024E 0000 C=DATA   S=_DATA          G=DGROUP   M=LED        ACBP=48
+ 02D0:024E 037F C=DATA   S=_DATA          G=DGROUP   M=PLoad      ACBP=48
+ 02D0:05CE 0000 C=DATA   S=_DATA          G=DGROUP   M=AE         ACBP=48
+ 02D0:05CE 0008 C=DATA   S=_DATA          G=DGROUP   M=noxx       ACBP=48
+ 02D0:05D6 0006 C=DATA   S=_DATA          G=DGROUP   M=exit       ACBP=48
+ 02D0:05DC 0000 C=DATA   S=_DATA          G=DGROUP   M=sprintf    ACBP=48
+ 02D0:05DC 0000 C=DATA   S=_DATA          G=DGROUP   M=fmemcpy    ACBP=48
+ 02D0:05DC 0000 C=DATA   S=_DATA          G=DGROUP   M=memcmp     ACBP=48
+ 02D0:05DC 0000 C=DATA   S=_DATA          G=DGROUP   M=movmem     ACBP=48
+ 02D0:05DC 0000 C=DATA   S=_DATA          G=DGROUP   M=memset     ACBP=48
+ 02D0:05DC 0000 C=DATA   S=_DATA          G=DGROUP   M=h_llsh     ACBP=48
+ 02D0:05DC 0000 C=DATA   S=_DATA          G=DGROUP   M=h_pada     ACBP=48
+ 02D0:05DC 0000 C=DATA   S=_DATA          G=DGROUP   M=f_pcmp     ACBP=48
+ 02D0:05DC 0000 C=DATA   S=_DATA          G=DGROUP   M=atexit     ACBP=48
+ 02D0:05DC 0006 C=DATA   S=_DATA          G=DGROUP   M=pcpprtl    ACBP=48
+ 02D0:05E2 0000 C=DATA   S=_DATA          G=DGROUP   M=h_psbp     ACBP=48
+ 02D0:05E2 0000 C=DATA   S=_DATA          G=DGROUP   M=memcpy     ACBP=48
+ 02D0:05E2 0067 C=DATA   S=_DATA          G=DGROUP   M=vprinter   ACBP=48
+ 02D0:064A 0000 C=DATA   S=_DATA          G=DGROUP   M=longtoa    ACBP=48
+ 02D0:064A 0000 C=DATA   S=_DATA          G=DGROUP   M=realcvt    ACBP=48
+ 02D0:064A 0000 C=DATA   S=_DATA          G=DGROUP   M=cvtfak     ACBP=48
+ 02D0:064A 0000 C=DATA   S=_CVTSEG        G=DGROUP   M=c0         ACBP=48
+ 02D0:064A 0000 C=DATA   S=_CVTSEG        G=DGROUP   M=realcvt    ACBP=48
+ 02D0:064A 0002 C=DATA   S=_CVTSEG        G=DGROUP   M=cvtfak     ACBP=48
+ 02D0:064C 0000 C=DATA   S=_SCNSEG        G=DGROUP   M=c0         ACBP=48
+ 02D0:064C 0006 C=DATA   S=_SCNSEG        G=DGROUP   M=cvtfak     ACBP=48
+ 02D0:0660 0002 C=BSS    S=_BSS           G=DGROUP   M=c0         ACBP=68
+ 02D0:0662 0000 C=BSS    S=_BSS           G=DGROUP   M=ErrorHandle ACBP=48
+ 02D0:0662 00E4 C=BSS    S=_BSS           G=DGROUP   M=SerialPort ACBP=48
+ 02D0:0746 003D C=BSS    S=_BSS           G=DGROUP   M=IntLib     ACBP=48
+ 02D0:0784 0002 C=BSS    S=_BSS           G=DGROUP   M=LED        ACBP=48
+ 02D0:0786 4C14 C=BSS    S=_BSS           G=DGROUP   M=PLoad      ACBP=48
+ 02D0:539A 000A C=BSS    S=_BSS           G=DGROUP   M=AE         ACBP=48
+ 02D0:53A4 0000 C=BSS    S=_BSS           G=DGROUP   M=noxx       ACBP=48
+ 02D0:53A4 0000 C=BSS    S=_BSS           G=DGROUP   M=exit       ACBP=48
+ 02D0:53A4 0000 C=BSS    S=_BSS           G=DGROUP   M=sprintf    ACBP=48
+ 02D0:53A4 0000 C=BSS    S=_BSS           G=DGROUP   M=fmemcpy    ACBP=48
+ 02D0:53A4 0000 C=BSS    S=_BSS           G=DGROUP   M=memcmp     ACBP=48
+ 02D0:53A4 0000 C=BSS    S=_BSS           G=DGROUP   M=movmem     ACBP=48
+ 02D0:53A4 0000 C=BSS    S=_BSS           G=DGROUP   M=memset     ACBP=48
+ 02D0:53A4 0012 C=BSS    S=_BSS           G=DGROUP   M=atexit     ACBP=48
+ 02D0:53B6 0002 C=BSS    S=_BSS           G=DGROUP   M=pcpprtl    ACBP=48
+ 02D0:53B8 0000 C=BSS    S=_BSS           G=DGROUP   M=memcpy     ACBP=48
+ 02D0:53B8 0000 C=BSS    S=_BSS           G=DGROUP   M=vprinter   ACBP=48
+ 02D0:53B8 0000 C=BSS    S=_BSS           G=DGROUP   M=longtoa    ACBP=48
+ 02D0:53C0 0000 C=NVRAM  S=_NVRAM         G=DGROUP   M=c0         ACBP=68
+ 02D0:53C0 0010 C=EDATA  S=_EDATA         G=DGROUP   M=c0         ACBP=68
+ 02D0:53D0 0000 C=STACK  S=_NHEAP         G=DGROUP   M=c0         ACBP=74
+ 02D0:53D0 0400 C=STACK  S=_STACK         G=DGROUP   M=c0         ACBP=78
+ 02D0:57D0 0010 C=STACK  S=_ESTACK        G=DGROUP   M=c0         ACBP=74
+ 084E:0000 0000 C=FAR_DATA S=_BFD           G=(none)   M=c0         ACBP=68
+ 084E:0000 0010 C=ENDFAR_DATA S=_EFD           G=(none)   M=c0         ACBP=68
+ 084F:0000 0000 C=FAR_CONST S=_BFC           G=(none)   M=c0         ACBP=68
+ 084F:0000 0010 C=ENDFAR_CONST S=_EFC           G=(none)   M=c0         ACBP=68
+ 0850:0000 0000 C=FAR_BSS S=_BFB           G=(none)   M=c0         ACBP=68
+ 0850:0000 0010 C=ENDFAR_BSS S=_EFB           G=(none)   M=c0         ACBP=68
+ 0851:0000 0000 C=FAR_HEAP S=_BFH           G=(none)   M=c0         ACBP=68
+ 0851:0000 0010 C=ENDFAR_HEAP S=_EFH           G=(none)   M=c0         ACBP=68
+
+
+  Address         Publics by Name
+
+ 0000:2701 idle  DGROUP@
+ 0000:25F3 idle  F_LXLSH@
+ 0000:26FA idle  F_OVERFLOW@
+ 0000:2614 idle  F_PADA@
+ 0000:269A       F_PCMP@
+ 0000:2659 idle  F_PSBA@
+ 0000:2706       F_PSBP@
+ 0000:25F3 idle  LXLSH@
+ 0000:25F0       N_LXLSH@
+ 0000:26FA idle  N_OVERFLOW@
+ 0000:2611       N_PADA@
+ 0000:2656 idle  N_PSBA@
+ 0000:2703 idle  N_PSBP@
+ 0000:26FA idle  OVERFLOW@
+ 0000:2614 idle  PADA@
+ 0000:269A idle  PCMP@
+ 0000:2659 idle  PSBA@
+ 0000:2706 idle  PSBP@
+ 0000:2262 idle  _ae86_ad12
+ 0000:22F0 idle  _ae86_da
+ 0000:1D1F idle  _ae_ad12
+ 0000:21C0 idle  _ae_da
+ 0000:14FE       _ae_init
+ 0000:14DF idle  _ae_reset
+ 0000:18CE idle  _amd_ee_byte_pro_128
+ 0000:1888 idle  _amd_ee_byte_pro_512
+ 0000:173D idle  _amd_ee_read_reset
+ 0000:175D idle  _amd_ee_sec_erase
+ 0000:030E idle  _ArrayBoundsException
+ 0000:26BC idle  _atexit
+ 0000:16A7 idle  _clka_en
+ 0000:16CE idle  _clkb_en
+ 0000:056C idle  _CloseSerialPort
+ 0000:216A idle  _crc16
+ 0000:05E8 idle  _DataReady
+ 02D0:0000 idle  _DATASEG@
+ 0000:167C idle  _delay0
+ 0000:1655 idle  _delay_ms
+ 0000:0E2E idle  _DisableTimer
+ 0000:00A8 idle  _DisplayRegisters
+ 0000:02AE idle  _DivideErrorException
+ 0000:0FDF idle  _EnableLED
+ 02D0:53B6 idle  _errno
+ 0000:036E idle  _EscOpcodeException
+ 0000:131C idle  _ExecBinary
+ 0000:13F6 idle  _ExecLoop
+ 0000:23D3       _exit
+ 0000:1054       _FlashError
+ 0000:1025       _FlashLED
+ 0000:08CB idle  _GenHexByte
+ 0000:0892 idle  _GenHexWord
+ 02D0:0746       _gExecutionState
+ 0000:09B8 idle  _HandleReceivedByte
+ 0000:171C idle  _hitwd
+ 0000:168B idle  _HLPRsetvect
+ 02D0:0B9A idle  _inBuffer
+ 0000:04C8       _InitSerialPort
+ 0000:1DA9 idle  _int0_init
+ 0000:1DF1 idle  _int1_init
+ 0000:0D1A idle  _Int21h
+ 0000:1E39 idle  _int2_init
+ 0000:1E90 idle  _int3_init
+ 0000:1ED8 idle  _int4_init
+ 0000:1F2F idle  _int5_init
+ 0000:1F86 idle  _int6_init
+ 0000:213B idle  _io_wait
+ 02D0:079A idle  _IVT_data
+ 0000:1B96 idle  _KERNELsetvect
+ 0000:14C0 idle  _led
+ 02D0:0784 idle  _LEDstate
+ 0000:1468       _main
+ 0000:2525       _memcmp
+ 0000:272B       _memcpy
+ 0000:2597       _memmove
+ 0000:25D6       _memset
+ 0000:254E idle  _movmem
+ 0000:1D94 idle  _nmi_init
+ 02D0:0766 idle  _OldInt21h
+ 02D0:0742 idle  _oldISR
+ 02D0:0762 idle  _OldSerialPort1_ISR
+ 02D0:076A idle  _OldSimptrisInt
+ 02D0:076E idle  _OldTimerISR
+ 02D0:139A idle  _outBuffer
+ 0000:02DE idle  _OverflowException
+ 0000:1BBA idle  _PDREMHandler
+ 0000:1FDD idle  _pio_init
+ 0000:2125 idle  _pio_rd
+ 0000:20AA idle  _pio_wr
+ 0000:16F5 idle  _pwr_save_en
+ 0000:115D idle  _ReceiveBinary
+ 0000:05F0       _RecvByte
+ 0000:0648       _RecvData
+ 0000:0630       _RecvDword
+ 0000:0685 idle  _RecvFarData
+ 0000:061B       _RecvWord
+ 0000:05A8       _ResetSerialPort
+ 0000:0FA6 idle  _RestoreExecState
+ 0000:0EFE idle  _RestoreInterrupts
+ 0000:1B33 idle  _rtc_init
+ 0000:1A4B idle  _rtc_rd
+ 0000:1914 idle  _rtc_rds
+ 0000:0F4B       _SaveExecState
+ 0000:06C3       _SendByte
+ 0000:0797       _SendBytePoll
+ 0000:0712       _SendData
+ 0000:0754       _SendDataFar
+ 0000:07AE idle  _SendDataPoll
+ 0000:0854       _SendDosStringFar
+ 0000:0701 idle  _SendDword
+ 0000:0829       _sendf
+ 0000:096F idle  _SendHexByte
+ 0000:0930 idle  _SendHexBytePoll
+ 0000:0950 idle  _SendHexWord
+ 0000:0911       _SendHexWordPoll
+ 0000:07F0       _sends
+ 0000:07CD       _SendStringPoll
+ 0000:06F0 idle  _SendWord
+ 02D0:072A idle  _ser1
+ 0000:0418       _SerialPortHandler
+ 0000:03F3 idle  _SerialPortISR
+ 0000:1127 idle  _SetIVT
+ 0000:0FF4       _SetLED
+ 0000:25B0 idle  _setmem
+ 0000:039E       _SetupErrorHandlers
+ 0000:0E70       _SetupInterrupts
+ 0000:0DC1 idle  _SetupTimer
+ 0000:0C8F idle  _SimptrisInt
+ 0000:1151 idle  _SkipToEOC
+ 0000:24C8 idle  _sprintf
+ 0000:1C1E idle  _t0_init
+ 0000:1CFE idle  _t0_rd
+ 0000:1C6B idle  _t1_init
+ 0000:1D09 idle  _t1_rd
+ 0000:1CB8 idle  _t2_init
+ 0000:1D14 idle  _t2_rd
+ 0000:0D89 idle  _Terminate
+ 0000:0DB0 idle  _TimerGo
+ 0000:0C3B idle  _TimerISR
+ 0000:0D9C idle  _TimerPause
+ 0000:100D idle  _ToggleLED
+ 0000:033E idle  _UnusedOpcodeException
+ 0000:24E5       _vsprintf
+ 0000:098F       _WaitSend
+ 0000:099F       _WaitSendComplete
+ 0000:10BD idle  _WaitString
+ 02D0:53A2 idle  _wEnter
+ 02D0:53A0 idle  _wExit
+ 02D0:539E idle  _wMask
+ 02D0:539A idle  _wNMI
+ 02D0:539C idle  _wUnmask
+ 02D0:0022 idle  __8086
+ 0000:26EC idle  __abort
+ 0000:000C idle  __AHSHIFT
+ 02D0:53A4       __atexitcnt
+ 02D0:53A6       __atexittbl
+ 02D0:0660 idle  __bss_start
+ 0000:23F4 idle  __cexit
+ 0000:26EB       __checknull
+ 0000:26EA       __cleanup
+ 0000:240E       __CopyFarData
+ 0000:0000       __cvtfak
+ 0000:2402 idle  __c_exit
+ 02D0:0000 idle  __data_start
+ 0000:2372       __ExceptInit
+ 02D0:0020 idle  __Exception_list
+ 0000:23E2 idle  __exit
+ 02D0:05D6 idle  __exitbuf
+ 02D0:05D8 idle  __exitfopen
+ 02D0:05DA idle  __exitopen
+ 0850:0000       __farbss_end
+ 0850:0000       __farbss_start
+ 084F:0000 idle  __farconst_end
+ 084F:0000 idle  __farconst_start
+ 084E:0000       __fardata_end
+ 084E:0000       __fardata_start
+ 0851:0000       __farheap_end
+ 0851:0000       __farheap_start
+ 0000:2501       __fmemcpy
+ 0000:26F3 idle  __fpure_error_
+ 0000:2373 idle  __GetPolymorphicDTC(void*,unsigned int)
+ 0000:2376 idle  __GetPolymorphicDTCfar(void*,unsigned int)
+ 0000:245E       __InitFarBss
+ 0000:2C15       __LONGTOA
+ 0000:26F3 idle  __npure_error_
+ 02D0:53C0 idle  __nvram_start
+ 0000:149C idle  __ParadigmDosUnsupported
+ 0000:14A7 idle  __ParadigmFarHeapCheck
+ 0000:1490       __ParadigmTerminate
+ 0000:000C idle  __PCFAST
+ 0000:1000       __PCINCR
+ 0000:000F       __PCMASK
+ 0000:0004       __PCSHIFT
+ 0000:2CAF       __REALCVT
+ 02D0:064A       __RealCvtVector
+ 0000:2361 idle  __RefDestructorCount()
+ 0000:2367 idle  __RefExceptionList()
+ 02CE:0000 idle  __romdata_end
+ 02CE:0000 idle  __romdata_start
+ 02CF:0000       __romfardata_end
+ 02CF:0000       __romfardata_start
+ 02D0:064C idle  __ScanTodVector
+ 02D0:53D0 idle  __stack_bottom
+ 02D0:57D0 idle  __stack_top
+ 0000:0000 idle  __startup
+ 02D0:53C0       __staticdata_end
+ 02D0:0660 idle  __stklen
+ 0000:26E0       __terminate
+ 0000:2C92 idle  __UTOA
+ 02D0:05DC idle  __version
+ 0000:2762       __VPRINTER
+ 02D0:05DE idle  ___brklvl
+ 0000:236E idle  ___ExitExceptBlocks
+ 02D0:05E0 idle  ___heapbase
+ 0000:2371 idle  ___InitExceptBlock
+ 0000:236D idle  ___InitExceptBlocks
+
+
+  Address         Publics by Value
+
+ 0000:0000 idle  __startup
+ 0000:0000       __cvtfak
+ 0000:0004       __PCSHIFT
+ 0000:000C idle  __AHSHIFT
+ 0000:000C idle  __PCFAST
+ 0000:000F       __PCMASK
+ 0000:00A8 idle  _DisplayRegisters
+ 0000:02AE idle  _DivideErrorException
+ 0000:02DE idle  _OverflowException
+ 0000:030E idle  _ArrayBoundsException
+ 0000:033E idle  _UnusedOpcodeException
+ 0000:036E idle  _EscOpcodeException
+ 0000:039E       _SetupErrorHandlers
+ 0000:03F3 idle  _SerialPortISR
+ 0000:0418       _SerialPortHandler
+ 0000:04C8       _InitSerialPort
+ 0000:056C idle  _CloseSerialPort
+ 0000:05A8       _ResetSerialPort
+ 0000:05E8 idle  _DataReady
+ 0000:05F0       _RecvByte
+ 0000:061B       _RecvWord
+ 0000:0630       _RecvDword
+ 0000:0648       _RecvData
+ 0000:0685 idle  _RecvFarData
+ 0000:06C3       _SendByte
+ 0000:06F0 idle  _SendWord
+ 0000:0701 idle  _SendDword
+ 0000:0712       _SendData
+ 0000:0754       _SendDataFar
+ 0000:0797       _SendBytePoll
+ 0000:07AE idle  _SendDataPoll
+ 0000:07CD       _SendStringPoll
+ 0000:07F0       _sends
+ 0000:0829       _sendf
+ 0000:0854       _SendDosStringFar
+ 0000:0892 idle  _GenHexWord
+ 0000:08CB idle  _GenHexByte
+ 0000:0911       _SendHexWordPoll
+ 0000:0930 idle  _SendHexBytePoll
+ 0000:0950 idle  _SendHexWord
+ 0000:096F idle  _SendHexByte
+ 0000:098F       _WaitSend
+ 0000:099F       _WaitSendComplete
+ 0000:09B8 idle  _HandleReceivedByte
+ 0000:0C3B idle  _TimerISR
+ 0000:0C8F idle  _SimptrisInt
+ 0000:0D1A idle  _Int21h
+ 0000:0D89 idle  _Terminate
+ 0000:0D9C idle  _TimerPause
+ 0000:0DB0 idle  _TimerGo
+ 0000:0DC1 idle  _SetupTimer
+ 0000:0E2E idle  _DisableTimer
+ 0000:0E70       _SetupInterrupts
+ 0000:0EFE idle  _RestoreInterrupts
+ 0000:0F4B       _SaveExecState
+ 0000:0FA6 idle  _RestoreExecState
+ 0000:0FDF idle  _EnableLED
+ 0000:0FF4       _SetLED
+ 0000:1000       __PCINCR
+ 0000:100D idle  _ToggleLED
+ 0000:1025       _FlashLED
+ 0000:1054       _FlashError
+ 0000:10BD idle  _WaitString
+ 0000:1127 idle  _SetIVT
+ 0000:1151 idle  _SkipToEOC
+ 0000:115D idle  _ReceiveBinary
+ 0000:131C idle  _ExecBinary
+ 0000:13F6 idle  _ExecLoop
+ 0000:1468       _main
+ 0000:1490       __ParadigmTerminate
+ 0000:149C idle  __ParadigmDosUnsupported
+ 0000:14A7 idle  __ParadigmFarHeapCheck
+ 0000:14C0 idle  _led
+ 0000:14DF idle  _ae_reset
+ 0000:14FE       _ae_init
+ 0000:1655 idle  _delay_ms
+ 0000:167C idle  _delay0
+ 0000:168B idle  _HLPRsetvect
+ 0000:16A7 idle  _clka_en
+ 0000:16CE idle  _clkb_en
+ 0000:16F5 idle  _pwr_save_en
+ 0000:171C idle  _hitwd
+ 0000:173D idle  _amd_ee_read_reset
+ 0000:175D idle  _amd_ee_sec_erase
+ 0000:1888 idle  _amd_ee_byte_pro_512
+ 0000:18CE idle  _amd_ee_byte_pro_128
+ 0000:1914 idle  _rtc_rds
+ 0000:1A4B idle  _rtc_rd
+ 0000:1B33 idle  _rtc_init
+ 0000:1B96 idle  _KERNELsetvect
+ 0000:1BBA idle  _PDREMHandler
+ 0000:1C1E idle  _t0_init
+ 0000:1C6B idle  _t1_init
+ 0000:1CB8 idle  _t2_init
+ 0000:1CFE idle  _t0_rd
+ 0000:1D09 idle  _t1_rd
+ 0000:1D14 idle  _t2_rd
+ 0000:1D1F idle  _ae_ad12
+ 0000:1D94 idle  _nmi_init
+ 0000:1DA9 idle  _int0_init
+ 0000:1DF1 idle  _int1_init
+ 0000:1E39 idle  _int2_init
+ 0000:1E90 idle  _int3_init
+ 0000:1ED8 idle  _int4_init
+ 0000:1F2F idle  _int5_init
+ 0000:1F86 idle  _int6_init
+ 0000:1FDD idle  _pio_init
+ 0000:20AA idle  _pio_wr
+ 0000:2125 idle  _pio_rd
+ 0000:213B idle  _io_wait
+ 0000:216A idle  _crc16
+ 0000:21C0 idle  _ae_da
+ 0000:2262 idle  _ae86_ad12
+ 0000:22F0 idle  _ae86_da
+ 0000:2361 idle  __RefDestructorCount()
+ 0000:2367 idle  __RefExceptionList()
+ 0000:236D idle  ___InitExceptBlocks
+ 0000:236E idle  ___ExitExceptBlocks
+ 0000:2371 idle  ___InitExceptBlock
+ 0000:2372       __ExceptInit
+ 0000:2373 idle  __GetPolymorphicDTC(void*,unsigned int)
+ 0000:2376 idle  __GetPolymorphicDTCfar(void*,unsigned int)
+ 0000:23D3       _exit
+ 0000:23E2 idle  __exit
+ 0000:23F4 idle  __cexit
+ 0000:2402 idle  __c_exit
+ 0000:240E       __CopyFarData
+ 0000:245E       __InitFarBss
+ 0000:24C8 idle  _sprintf
+ 0000:24E5       _vsprintf
+ 0000:2501       __fmemcpy
+ 0000:2525       _memcmp
+ 0000:254E idle  _movmem
+ 0000:2597       _memmove
+ 0000:25B0 idle  _setmem
+ 0000:25D6       _memset
+ 0000:25F0       N_LXLSH@
+ 0000:25F3 idle  LXLSH@
+ 0000:25F3 idle  F_LXLSH@
+ 0000:2611       N_PADA@
+ 0000:2614 idle  F_PADA@
+ 0000:2614 idle  PADA@
+ 0000:2656 idle  N_PSBA@
+ 0000:2659 idle  PSBA@
+ 0000:2659 idle  F_PSBA@
+ 0000:269A       F_PCMP@
+ 0000:269A idle  PCMP@
+ 0000:26BC idle  _atexit
+ 0000:26E0       __terminate
+ 0000:26EA       __cleanup
+ 0000:26EB       __checknull
+ 0000:26EC idle  __abort
+ 0000:26F3 idle  __fpure_error_
+ 0000:26F3 idle  __npure_error_
+ 0000:26FA idle  F_OVERFLOW@
+ 0000:26FA idle  N_OVERFLOW@
+ 0000:26FA idle  OVERFLOW@
+ 0000:2701 idle  DGROUP@
+ 0000:2703 idle  N_PSBP@
+ 0000:2706 idle  PSBP@
+ 0000:2706       F_PSBP@
+ 0000:272B       _memcpy
+ 0000:2762       __VPRINTER
+ 0000:2C15       __LONGTOA
+ 0000:2C92 idle  __UTOA
+ 0000:2CAF       __REALCVT
+ 02CE:0000 idle  __romdata_end
+ 02CE:0000 idle  __romdata_start
+ 02CF:0000       __romfardata_end
+ 02CF:0000       __romfardata_start
+ 02D0:0000 idle  _DATASEG@
+ 02D0:0000 idle  __data_start
+ 02D0:0020 idle  __Exception_list
+ 02D0:0022 idle  __8086
+ 02D0:05D6 idle  __exitbuf
+ 02D0:05D8 idle  __exitfopen
+ 02D0:05DA idle  __exitopen
+ 02D0:05DC idle  __version
+ 02D0:05DE idle  ___brklvl
+ 02D0:05E0 idle  ___heapbase
+ 02D0:064A       __RealCvtVector
+ 02D0:064C idle  __ScanTodVector
+ 02D0:0660 idle  __bss_start
+ 02D0:0660 idle  __stklen
+ 02D0:072A idle  _ser1
+ 02D0:0742 idle  _oldISR
+ 02D0:0746       _gExecutionState
+ 02D0:0762 idle  _OldSerialPort1_ISR
+ 02D0:0766 idle  _OldInt21h
+ 02D0:076A idle  _OldSimptrisInt
+ 02D0:076E idle  _OldTimerISR
+ 02D0:0784 idle  _LEDstate
+ 02D0:079A idle  _IVT_data
+ 02D0:0B9A idle  _inBuffer
+ 02D0:139A idle  _outBuffer
+ 02D0:539A idle  _wNMI
+ 02D0:539C idle  _wUnmask
+ 02D0:539E idle  _wMask
+ 02D0:53A0 idle  _wExit
+ 02D0:53A2 idle  _wEnter
+ 02D0:53A4       __atexitcnt
+ 02D0:53A6       __atexittbl
+ 02D0:53B6 idle  _errno
+ 02D0:53C0 idle  __nvram_start
+ 02D0:53C0       __staticdata_end
+ 02D0:53D0 idle  __stack_bottom
+ 02D0:57D0 idle  __stack_top
+ 084E:0000       __fardata_start
+ 084E:0000       __fardata_end
+ 084F:0000 idle  __farconst_end
+ 084F:0000 idle  __farconst_start
+ 0850:0000       __farbss_start
+ 0850:0000       __farbss_end
+ 0851:0000       __farheap_start
+ 0851:0000       __farheap_end
+
+
+Program entry point at 0000:0000
+
